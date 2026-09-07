@@ -2,7 +2,7 @@
 
 /* ---------------------------------------------------------------------------
    Design tokens — repris tels quels du handoff FL390.
-   Trois familles, sept couleurs, trois recettes de glass. Ne pas en inventer.
+   Trois familles, sept couleurs, une recette de glass. Ne pas en inventer.
 --------------------------------------------------------------------------- */
 
 @theme {
@@ -21,15 +21,9 @@
   --font-label: var(--font-titillium);
 }
 
-:root {
-  /* En-tête fixe : ticker 36px + navigation 60px. Les ancres en dépendent. */
-  --header-height: 96px;
-}
-
 @layer base {
   html {
     background: var(--color-ink);
-    scroll-padding-top: var(--header-height);
   }
 
   @media (prefers-reduced-motion: no-preference) {
@@ -58,24 +52,10 @@
 }
 
 /* ---------------------------------------------------------------------------
-   Glass — trois tiers seulement
+   Glass — pastille posée sur une image
 --------------------------------------------------------------------------- */
 
 @layer components {
-  /* Tier 1 — en-tête */
-  .glass-ticker {
-    background: rgb(253 253 253 / 0.42);
-    backdrop-filter: blur(26px) saturate(180%);
-    -webkit-backdrop-filter: blur(26px) saturate(180%);
-  }
-
-  .glass-nav {
-    background: rgb(253 253 253 / 0.5);
-    backdrop-filter: blur(30px) saturate(180%);
-    -webkit-backdrop-filter: blur(30px) saturate(180%);
-  }
-
-  /* Tier 2 — pastille posée sur une image */
   .glass-pill {
     background: rgb(253 253 253 / 0.14);
     backdrop-filter: blur(18px) saturate(180%);
@@ -83,33 +63,12 @@
     border: 1px solid rgb(253 253 253 / 0.28);
   }
 
-  .glass-pill-cta {
-    background: rgb(253 253 253 / 0.1);
-    backdrop-filter: blur(18px) saturate(180%);
-    -webkit-backdrop-filter: blur(18px) saturate(180%);
-    border: 1px solid rgb(253 253 253 / 0.3);
-    box-shadow: inset 0 1px 0 rgb(253 253 253 / 0.28);
-  }
-
-  /* Tier 3 — contrôle posé sur une carte produit */
-  .glass-control {
-    background: rgb(253 253 253 / 0.94);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-  }
 
   /* Repli opaque là où backdrop-filter n'est pas supporté */
   @supports not (
     (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))
   ) {
-    .glass-ticker,
-    .glass-nav,
-    .glass-control {
-      background: rgb(253 253 253 / 0.96);
-    }
-
-    .glass-pill,
-    .glass-pill-cta {
+    .glass-pill {
       background: rgb(0 0 0 / 0.55);
     }
   }
@@ -118,15 +77,6 @@
 /* ---------------------------------------------------------------------------
    Motion
 --------------------------------------------------------------------------- */
-
-@keyframes fl-marquee {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
-}
 
 @keyframes fl-rise {
   from {
@@ -168,22 +118,6 @@
 
 .animate-fl-settle {
   animation: fl-settle 9000ms ease-out both;
-}
-
-/* Apparition au défilement : la classe `reveal` n'est posée qu'en JavaScript,
-   et seulement sur les blocs hors écran au chargement — sans script, tout
-   est visible. */
-.reveal {
-  opacity: 0;
-  transform: translateY(28px);
-  transition:
-    opacity 900ms ease-out,
-    transform 900ms ease-out;
-}
-
-.reveal.reveal-in {
-  opacity: 1;
-  transform: none;
 }
 
 @media (prefers-reduced-motion: reduce) {

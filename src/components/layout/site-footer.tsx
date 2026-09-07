@@ -1,47 +1,10 @@
 import { Wordmark } from "@/components/layout/wordmark";
-import { FOOTER_COLUMNS, SHOP_LINKS, SITE } from "@/lib/site";
-
-const HEADING =
-  "font-label text-[10px] font-bold tracking-[0.3em] text-paper/38 uppercase";
+import { SITE } from "@/lib/site";
 
 export function SiteFooter() {
   return (
     <footer className="bg-ink text-paper">
-      <div className="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-[34px] px-[22px] py-[clamp(40px,6vw,78px)]">
-        {FOOTER_COLUMNS.map((column) => (
-          <div key={column.heading}>
-            <h2 className={`${HEADING} m-0`}>{column.heading}</h2>
-            <ul className="m-0 mt-[18px] flex list-none flex-col gap-[12px] p-0">
-              {column.links.map((link) => (
-                <li key={link.href}>
-                  <a
-                    href={link.href}
-                    className="font-label text-[10px] font-bold tracking-[0.2em] uppercase transition-colors duration-300 hover:text-burgundy"
-                  >
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
-
-        <div>
-          <h2 className={`${HEADING} m-0`}>Le drop</h2>
-          <p className="mt-[18px] mb-[18px] max-w-[34ch] text-[14px]/[1.6] text-paper/66">
-            Drop 01 — six pièces en séries courtes, dessinées à 39 000 pieds et
-            fabriquées en France.
-          </p>
-          <a
-            href={SHOP_LINKS.shop}
-            className="font-label inline-block border-b border-paper/30 pb-[3px] text-[9px] font-bold tracking-[0.24em] uppercase transition-colors duration-300 hover:text-burgundy"
-          >
-            Acheter les pièces
-          </a>
-        </div>
-      </div>
-
-      <div className="px-[12px] pb-[14px]">
+      <div className="px-[12px] pt-[clamp(40px,6vw,78px)] pb-[14px]">
         <Wordmark
           gapClassName="gap-[2px]"
           markClassName="text-[clamp(2rem,11vw,9rem)] leading-[0.84] tracking-[-0.03em]"

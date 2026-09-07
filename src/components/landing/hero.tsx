@@ -1,19 +1,18 @@
 import Image from "next/image";
 
-import { SHOP_LINKS } from "@/lib/site";
+import { Countdown } from "@/components/landing/countdown";
+import { Wordmark } from "@/components/layout/wordmark";
+import { formatLaunchDate, launchDate } from "@/lib/site";
 
-/**
- * Hero plein cadre, sans spacer : il passe volontairement sous l'en-tête en
- * glass. Un seul visuel, une lente décélération, le titre porte le reste.
- */
+/** Hero plein écran : image de fond, « Boarding Soon », compte à rebours. */
 export function Hero() {
   return (
-    <section className="relative h-svh min-h-[600px] overflow-hidden bg-ink">
+    <section className="relative flex h-svh min-h-[640px] flex-col overflow-hidden bg-ink text-paper">
       {/* Paysage au-dessus de 760 px, portrait en dessous : un 16/9 recadré en
           portrait ne montrerait que l'impression du t-shirt, coupée. */}
       <Image
         src="/img/hero-discipline.jpg"
-        alt="Le t-shirt Discipline porté sur le tarmac, devant un jet privé"
+        alt=""
         fill
         priority
         sizes="(min-width: 760px) 100vw, 1px"
@@ -22,7 +21,7 @@ export function Hero() {
       />
       <Image
         src="/img/hoodie-discipline.jpg"
-        alt="Le sweat à capuche Discipline porté sur le tarmac, devant un jet privé"
+        alt=""
         fill
         priority
         sizes="(min-width: 760px) 1px, 100vw"
@@ -30,50 +29,34 @@ export function Hero() {
         className="animate-fl-settle object-cover min-[760px]:hidden"
       />
 
-      <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(0,0,0,0.74)_0%,rgba(0,0,0,0.08)_52%,rgba(0,0,0,0.32)_100%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(0,0,0,0.78)_0%,rgba(0,0,0,0.18)_55%,rgba(0,0,0,0.45)_100%)]" />
 
-      <div className="absolute inset-x-0 bottom-0 flex flex-col gap-[26px] px-[22px] pb-[30px] text-paper min-[760px]:pb-[42px]">
-        <p
-          className="animate-fl-fade font-label m-0 flex flex-wrap items-center gap-x-[14px] gap-y-[6px] text-[9px] font-bold tracking-[0.32em] uppercase"
-          style={{ animationDelay: "120ms" }}
-        >
-          <span>FL390 Paris</span>
-          <span className="text-burgundy">✳</span>
-          <span>Drop 01</span>
-          <span className="text-burgundy">✳</span>
-          <span>Fabriqué en France</span>
-        </p>
+      <div className="animate-fl-fade relative flex justify-center pt-[26px]">
+        <Wordmark
+          markClassName="text-[22px]"
+          cityClassName="text-[8px] tracking-[0.62em] indent-[0.62em]"
+        />
+      </div>
 
-        <h1 className="animate-fl-rise font-display m-0 text-[clamp(2.6rem,9.5vw,9rem)] leading-[0.84] tracking-[-0.02em]">
-          Cleared For
-          <br />
-          Takeoff.
-        </h1>
+      <div className="relative mt-auto flex flex-col gap-[28px] px-[22px] pb-[34px] min-[760px]:pb-[48px]">
+        <div className="animate-fl-rise flex flex-col gap-[18px]">
+          <p className="font-label m-0 text-[9px] font-bold tracking-[0.32em] uppercase">
+            FL390 Paris <span className="text-burgundy">✳</span> Drop 01{" "}
+            <span className="text-burgundy">✳</span> Embarquement le{" "}
+            {formatLaunchDate()}
+          </p>
+          <h1 className="font-display m-0 text-[clamp(2.6rem,10vw,9.5rem)] leading-[0.84] tracking-[-0.02em]">
+            Boarding
+            <br />
+            Soon.
+          </h1>
+        </div>
 
         <div
-          className="animate-fl-rise flex flex-col gap-[24px] min-[760px]:flex-row min-[760px]:items-end min-[760px]:justify-between"
+          className="animate-fl-rise max-w-[640px]"
           style={{ animationDelay: "160ms" }}
         >
-          <p className="m-0 max-w-[44ch] text-[15px]/[1.7] text-paper/78 min-[760px]:text-[16px]/[1.7]">
-            Streetwear d&apos;inspiration aéronautique, dessiné par un pilote de
-            ligne. Coton peigné 270&nbsp;g, séries courtes, fabrication
-            française.
-          </p>
-
-          <div className="flex flex-wrap gap-[10px]">
-            <a
-              href={SHOP_LINKS.shop}
-              className="font-label rounded-[999px] bg-paper px-[26px] py-[15px] text-[11px] font-bold tracking-[0.26em] whitespace-nowrap text-ink uppercase transition-colors duration-300 hover:bg-burgundy hover:text-paper"
-            >
-              Découvrir le drop
-            </a>
-            <a
-              href="#embarquement"
-              className="glass-pill-cta font-label rounded-[999px] px-[26px] py-[15px] text-[11px] font-bold tracking-[0.26em] whitespace-nowrap text-paper uppercase transition-colors duration-300 hover:bg-paper/90 hover:text-ink"
-            >
-              Rejoindre la liste
-            </a>
-          </div>
+          <Countdown target={launchDate.getTime()} />
         </div>
       </div>
     </section>

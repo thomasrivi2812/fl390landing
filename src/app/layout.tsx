@@ -2,11 +2,10 @@ import type { Metadata } from "next";
 import { Krona_One, Titillium_Web, Work_Sans } from "next/font/google";
 
 import { SiteFooter } from "@/components/layout/site-footer";
-import { SiteHeader } from "@/components/layout/site-header";
 import { SITE, siteUrl } from "@/lib/site";
 import "./globals.css";
 
-/** Display uniquement : hero, titres, logotype, manifeste, marquee. */
+/** Display uniquement : titre du hero, chiffres du compte à rebours, logotype. */
 const kronaOne = Krona_One({
   variable: "--font-krona-one",
   subsets: ["latin"],
@@ -14,7 +13,7 @@ const kronaOne = Krona_One({
   display: "swap",
 });
 
-/** Copy courante, noms des pièces, prix. */
+/** Copy courante. */
 const workSans = Work_Sans({
   variable: "--font-work-sans",
   subsets: ["latin"],
@@ -22,7 +21,7 @@ const workSans = Work_Sans({
   display: "swap",
 });
 
-/** Micro-labels en capitales : navigation, boutons, clés de tableaux. */
+/** Micro-labels en capitales : libellés, bouton, mentions. */
 const titillium = Titillium_Web({
   variable: "--font-titillium",
   subsets: ["latin"],
@@ -58,7 +57,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${kronaOne.variable} ${workSans.variable} ${titillium.variable} h-full`}
     >
       <body className="flex min-h-full flex-col">
-        <SiteHeader />
         <main className="flex-1">{children}</main>
         <SiteFooter />
       </body>
