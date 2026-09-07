@@ -3,7 +3,9 @@
 Page d'attente du Drop 01 de FL390, marque de streetwear d'inspiration
 aéronautique fondée par un pilote de ligne. Un hero en forme de tableau des
 départs d'aéroport (volets mécaniques) avec « Boarding Soon » et le compte à
-rebours à l'intérieur, un champ email, un pied de page.
+rebours à l'intérieur, sur un fond de codes OACI qui dérivent lentement ; un
+champ email ; un pied de page. Sous 640 px, le tableau se résume au titre et
+au compte à rebours.
 Déployable sur [Vercel](https://vercel.com) sans configuration ; le système de
 design est celui de la boutique ([dépôt `FL390`](https://github.com/thomasrivi2812/FL390)).
 
@@ -47,10 +49,10 @@ src/
     opengraph-image.jpg     # 1200 × 630, aussi twitter-image.jpg
     icon.svg, robots.ts, sitemap.ts, not-found.tsx
   components/
-    landing/                # hero, tableau des départs, volets, compte à
-                            # rebours, horloge, liste d'embarquement
+    landing/                # hero, fond animé, tableau des départs, volets,
+                            # compte à rebours, horloge, liste d'embarquement
     layout/                 # pied de page, logotype, formulaire email
-  lib/site.ts               # identité, date d'embarquement, lignes du tableau
+  lib/site.ts               # identité, date d'embarquement, lignes du tableau, codes
 ```
 
 ## Variables d'environnement

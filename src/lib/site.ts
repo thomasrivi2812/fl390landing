@@ -60,3 +60,9 @@ export const BOARD_ROWS: BoardRow[] = [
   { time: "10:20", flight: "SQ 335", destination: "SIN — SINGAPORE", gate: "M18", status: "À L'HEURE" },
   { time: "——:——", flight: "FL 390", destination: "DROP 01 — 39 000 FT", gate: "01", status: "BOARDING SOON", featured: true },
 ];
+
+/** Codes OACI du fond animé — ceux des t-shirts Departures et CDG — LHR. */
+export const ICAO_CODES = [
+  "CDG", "LHR", "JFK", "LAX", "DXB", "HND", "NRT", "SIN", "FRA", "AMS",
+  "HKG", "PEK", "SYD", "GVA", "ORD", "BOS", "MIA", "YUL", "MAD", "BCN",
+] as const;

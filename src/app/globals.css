@@ -118,6 +118,17 @@
   }
 }
 
+/* Fond du hero : colonnes de codes qui dérivent verticalement, deux passes
+   identiques translatées de 0 à -50 %. */
+@keyframes fl-drift {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-50%);
+  }
+}
+
 .animate-fl-flap {
   animation: fl-flap 320ms ease-out both;
   transform-origin: 50% 50%;
