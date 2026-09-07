@@ -52,7 +52,7 @@
 }
 
 /* ---------------------------------------------------------------------------
-   Glass — pastille posée sur une image
+   Glass — pastille posée sur une surface sombre
 --------------------------------------------------------------------------- */
 
 @layer components {
@@ -98,16 +98,6 @@
   }
 }
 
-/* Lente décélération du visuel de hero — un seul mouvement, jamais de rebond. */
-@keyframes fl-settle {
-  from {
-    transform: scale(1.08);
-  }
-  to {
-    transform: scale(1);
-  }
-}
-
 .animate-fl-rise {
   animation: fl-rise 1100ms ease-out both;
 }
@@ -116,8 +106,21 @@
   animation: fl-fade 900ms ease-out both;
 }
 
-.animate-fl-settle {
-  animation: fl-settle 9000ms ease-out both;
+/* Volet de tableau d'affichage : bascule sur l'axe horizontal au changement. */
+@keyframes fl-flap {
+  from {
+    transform: rotateX(-90deg);
+    opacity: 0.4;
+  }
+  to {
+    transform: rotateX(0);
+    opacity: 1;
+  }
+}
+
+.animate-fl-flap {
+  animation: fl-flap 320ms ease-out both;
+  transform-origin: 50% 50%;
 }
 
 @media (prefers-reduced-motion: reduce) {

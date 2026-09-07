@@ -37,3 +37,26 @@ export function formatLaunchDate(): string {
     timeZone: "Europe/Paris",
   }).format(launchDate);
 }
+
+/**
+ * Lignes du tableau des départs. Les codes sont ceux imprimés au dos des
+ * t-shirts du drop ; la dernière ligne est la nôtre.
+ */
+export type BoardRow = {
+  time: string;
+  flight: string;
+  destination: string;
+  gate: string;
+  status: string;
+  /** Ligne FL390 : mise en avant, statut en volet bordeaux. */
+  featured?: boolean;
+};
+
+export const BOARD_ROWS: BoardRow[] = [
+  { time: "06:40", flight: "AF 1780", destination: "LHR — LONDON", gate: "K32", status: "DÉCOLLÉ" },
+  { time: "07:15", flight: "AF 006", destination: "JFK — NEW YORK", gate: "M24", status: "DÉCOLLÉ" },
+  { time: "08:05", flight: "EK 072", destination: "DXB — DUBAI", gate: "L41", status: "DÉCOLLÉ" },
+  { time: "09:30", flight: "JL 416", destination: "HND — TOKYO", gate: "K07", status: "DERNIER APPEL" },
+  { time: "10:20", flight: "SQ 335", destination: "SIN — SINGAPORE", gate: "M18", status: "À L'HEURE" },
+  { time: "——:——", flight: "FL 390", destination: "DROP 01 — 39 000 FT", gate: "01", status: "BOARDING SOON", featured: true },
+];

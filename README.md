@@ -1,8 +1,9 @@
 # FL390 Paris — landing « Boarding soon »
 
 Page d'attente du Drop 01 de FL390, marque de streetwear d'inspiration
-aéronautique fondée par un pilote de ligne. Un hero sur image de fond,
-« Boarding Soon », un compte à rebours, un champ email, un pied de page.
+aéronautique fondée par un pilote de ligne. Un hero en forme de tableau des
+départs d'aéroport (volets mécaniques) avec « Boarding Soon » et le compte à
+rebours à l'intérieur, un champ email, un pied de page.
 Déployable sur [Vercel](https://vercel.com) sans configuration ; le système de
 design est celui de la boutique ([dépôt `FL390`](https://github.com/thomasrivi2812/FL390)).
 
@@ -14,7 +15,6 @@ design est celui de la boutique ([dépôt `FL390`](https://github.com/thomasrivi
 | Langage | TypeScript |
 | Styles | Tailwind CSS 4 (tokens dans `src/app/globals.css`) |
 | Polices | `next/font` — Krona One, Work Sans, Titillium Web, auto-hébergées |
-| Images | `next/image` sur deux photographies de la marque (`public/img`) |
 | Lint | ESLint (`eslint-config-next`) |
 | Node | 22 (voir `.nvmrc`) |
 
@@ -47,10 +47,10 @@ src/
     opengraph-image.jpg     # 1200 × 630, aussi twitter-image.jpg
     icon.svg, robots.ts, sitemap.ts, not-found.tsx
   components/
-    landing/                # hero, compte à rebours, liste d'embarquement
+    landing/                # hero, tableau des départs, volets, compte à
+                            # rebours, horloge, liste d'embarquement
     layout/                 # pied de page, logotype, formulaire email
-  lib/site.ts               # identité, date d'embarquement
-public/img/                 # visuel paysage (desktop) et portrait (mobile)
+  lib/site.ts               # identité, date d'embarquement, lignes du tableau
 ```
 
 ## Variables d'environnement
@@ -61,9 +61,12 @@ public/img/                 # visuel paysage (desktop) et portrait (mobile)
 | `NEXT_PUBLIC_LAUNCH_DATE` | Date visée par le compte à rebours, ISO 8601 avec fuseau. Défaut : `2026-10-07T00:00:00+02:00` |
 | `NEWSLETTER_WEBHOOK_URL` | Endpoint recevant `{ "email": "…" }` ; absent → 503 et message dans le formulaire |
 
-Le compte à rebours est rendu neutre côté serveur puis mis à jour chaque
-seconde dans le navigateur ; arrivé à zéro, il reste à `00`.
-`prefers-reduced-motion: reduce` coupe les animations d'entrée.
+Les lignes du tableau (`BOARD_ROWS` dans `src/lib/site.ts`) sont décoratives :
+codes OACI imprimés au dos des t-shirts, la dernière ligne étant le vol FL 390.
+L'horloge affiche l'heure de Paris. Le compte à rebours est rendu neutre côté
+serveur puis mis à jour chaque seconde dans le navigateur, chaque volet ne
+basculant que lorsque son chiffre change ; arrivé à zéro, il reste à `00`.
+`prefers-reduced-motion: reduce` coupe toutes les animations.
 
 ## À faire avant la mise en ligne
 
