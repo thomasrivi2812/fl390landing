@@ -12,6 +12,21 @@ Trois sections de thème à ajouter dans l'éditeur de code (dossier
 Facultatif : `templates/page.boarding.json` (dossier `templates`) pour
 assigner le hero à une page dédiée.
 
+## Boutique protégée par mot de passe (« Opening soon »)
+
+Tant que la protection par mot de passe est active (Boutique en ligne →
+Préférences), les visiteurs voient la page « mot de passe », pas la page
+d'accueil. Deux possibilités :
+
+- **Mettre la landing sur la page mot de passe** (recommandé avant lancement) :
+  copier `templates/password.json` dans le dossier `templates` du thème (le
+  fichier existe déjà, remplacer son contenu), ou dans Personnaliser choisir
+  le gabarit « Page de mot de passe » dans le menu du haut, retirer ses
+  sections et ajouter les trois sections FL390.
+- **Retirer la protection** : Boutique en ligne → Préférences → décocher
+  « Restreindre l'accès ». Nécessite un forfait actif. La page d'accueil
+  configurée ci-dessous s'affiche alors.
+
 ## Mise en place dans le personnalisateur
 
 1. **En-tête** — dans le groupe « Header » de gauche, masquer (icône œil) ou
