@@ -1,0 +1,82 @@
+{% comment %}
+  FL390 — Pied de page : logotype monumental et ligne de mentions.
+  À placer dans le groupe « footer » du personnalisateur à la place du
+  pied de page du thème.
+{% endcomment %}
+
+{%- liquid
+  assign sid = section.id
+  assign s = section.settings
+-%}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Krona+One&family=Titillium+Web:wght@600;700&display=swap">
+
+<style>
+  #fl390-footer-{{ sid }} { background: #000000; color: #fdfdfd; -webkit-font-smoothing: antialiased; }
+  #fl390-footer-{{ sid }} .fl-footer__mark-wrap { padding: clamp(40px, 6vw, 78px) 12px 14px; }
+  #fl390-footer-{{ sid }} .fl-wordmark { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+  #fl390-footer-{{ sid }} .fl-wordmark__mark {
+    font-family: 'Krona One', sans-serif; font-size: clamp(2rem, 11vw, 9rem); line-height: 0.84; letter-spacing: -0.03em;
+  }
+  #fl390-footer-{{ sid }} .fl-wordmark__city {
+    font-family: 'Titillium Web', sans-serif; font-weight: 600; font-size: clamp(8px, 1.5vw, 16px); line-height: 1;
+    letter-spacing: 0.72em; text-indent: 0.72em; text-transform: uppercase;
+  }
+  #fl390-footer-{{ sid }} .fl-footer__legal {
+    display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px;
+    padding: 16px 22px; border-top: 1px solid rgba(253, 253, 253, 0.18);
+    font-family: 'Titillium Web', sans-serif; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: rgba(253, 253, 253, 0.4);
+  }
+  #fl390-footer-{{ sid }} .fl-footer__legal a { color: inherit; text-decoration: none; transition: color 300ms ease; }
+  #fl390-footer-{{ sid }} .fl-footer__legal a:hover { color: #6d1111; }
+  #fl390-footer-{{ sid }} .fl-footer__links { display: flex; flex-wrap: wrap; gap: 12px 22px; }
+  @media (prefers-reduced-motion: reduce) { #fl390-footer-{{ sid }} * { transition: none !important; } }
+</style>
+
+<footer id="fl390-footer-{{ sid }}">
+  <div class="fl-footer__mark-wrap">
+    <span class="fl-wordmark" aria-label="{{ s.mark }} {{ s.city }}">
+      <span class="fl-wordmark__mark" aria-hidden="true">{{ s.mark }}</span>
+      <span class="fl-wordmark__city" aria-hidden="true">{{ s.city }}</span>
+    </span>
+  </div>
+  <div class="fl-footer__legal">
+    <span>{{ s.legal }}</span>
+    <span class="fl-footer__links">
+      {%- for block in section.blocks -%}
+        <a href="{{ block.settings.url }}" {{ block.shopify_attributes }}>{{ block.settings.label }}</a>
+      {%- endfor -%}
+      <span>{{ s.tagline }}</span>
+    </span>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "FL390 — Pied de page",
+  "tag": "div",
+  "class": "fl390-footer-section",
+  "enabled_on": { "groups": ["footer"] },
+  "settings": [
+    { "type": "text", "id": "mark", "label": "Logotype", "default": "FL390" },
+    { "type": "text", "id": "city", "label": "Ville", "default": "PARIS" },
+    { "type": "text", "id": "legal", "label": "Mentions (gauche)", "default": "© 2026 FL390 Paris — Fabriqué en France" },
+    { "type": "text", "id": "tagline", "label": "Signature (droite)", "default": "See you at FL390." }
+  ],
+  "blocks": [
+    {
+      "type": "link",
+      "name": "Lien",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Libellé", "default": "Instagram" },
+        { "type": "url", "id": "url", "label": "Lien" }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [{ "name": "FL390 — Pied de page" }]
+}
+{% endschema %}

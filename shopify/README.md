@@ -1,60 +1,38 @@
-# FL390 — Boarding soon, version Shopify
+# FL390 — version Shopify
 
-Même landing que ce dépôt, adaptée en **section de thème Shopify** autonome :
-un seul fichier Liquid (HTML, CSS, JS et schéma), réglable dans le
-personnalisateur. Testée avec Theme Check et sur le thème Horizon.
-
-## Fichiers
+Trois sections de thème à ajouter dans l'éditeur de code (dossier
+`sections`), sans rien supprimer :
 
 | Fichier | Rôle |
 | --- | --- |
-| `sections/fl390-boarding.liquid` | La section : fond animé, tableau des départs, « BOARDING SOON », compte à rebours, formulaire email |
-| `templates/page.boarding.json` | Gabarit de page prêt à l'emploi, qui ne contient que cette section |
+| `sections/fl390-header.liquid` | En-tête minimal : logotype FL390 centré |
+| `sections/fl390-boarding.liquid` | Hero « Boarding soon » + liste d'embarquement |
+| `sections/fl390-footer.liquid` | Pied de page : logotype monumental, mentions |
 
-## Installation dans l'éditeur de code
+Facultatif : `templates/page.boarding.json` (dossier `templates`) pour
+assigner le hero à une page dédiée.
 
-1. Dans **Boutique en ligne → Thèmes → Modifier le code**, ouvrir le dossier
-   `sections`, cliquer sur **Ajouter un nouveau fichier**, le nommer
-   `fl390-boarding.liquid`, coller le contenu du fichier et enregistrer.
-2. Dans `templates`, **Ajouter un nouveau fichier** → type `page`, nom
-   `boarding`, format JSON. Remplacer le contenu par `page.boarding.json`
-   et enregistrer.
-3. Dans **Boutique en ligne → Pages**, créer une page « Boarding soon » et lui
-   assigner le gabarit `page.boarding`.
-4. Pour en faire la page d'accueil : **Personnaliser** → page d'accueil →
-   supprimer les sections existantes → **Ajouter une section** →
-   « FL390 — Boarding soon ». Le gabarit de l'étape 2 devient alors inutile.
+## Mise en place dans le personnalisateur
 
-Le formulaire crée un client Shopify avec le tag `newsletter` et l'accord
-marketing : les adresses se retrouvent dans **Clients**, prêtes pour Shopify
-Email ou l'outil de votre choix.
+1. **En-tête** — dans le groupe « Header » de gauche, masquer (icône œil) ou
+   retirer l'en-tête et la barre d'annonce du thème, puis « Ajouter une
+   section » → « FL390 — En-tête ».
+2. **Page d'accueil** — retirer les sections affichées, puis « Ajouter une
+   section » → « FL390 — Boarding soon ».
+3. **Pied de page** — dans le groupe « Footer », masquer ou retirer le pied de
+   page du thème, puis « Ajouter une section » → « FL390 — Pied de page ».
+4. Enregistrer.
 
-## Réglages (personnalisateur)
+Les fichiers du thème ne sont pas modifiés : tout est réversible en
+réaffichant les sections d'origine.
 
-- **Date d'embarquement** — ISO 8601 avec fuseau, par exemple
-  `2026-10-07T00:00:00+02:00` (`+02:00` en été, `+01:00` en hiver à Paris),
-  et la date telle qu'affichée dans le surtitre.
-- **Titre en volets** — une tuile par lettre, la ligne casse entre les mots.
-- **Lignes du tableau** — un bloc « Vol » par ligne (heure, vol, destination,
-  porte, statut) ; la ligne FL 390 et son statut bordeaux sont dans les
-  réglages de la section.
-- **Affichage** — hauteur minimale du hero, fond animé, logotype FL390
-  au-dessus du tableau (à activer si l'en-tête du thème est masqué).
-- **Liste d'embarquement** — tous les textes, ou masquer le bloc.
+## Réglages utiles
 
-Sous 640 px, le tableau ne garde que le titre, le compte à rebours et son pied,
-comme sur la version Next.js. `prefers-reduced-motion` coupe les animations.
-
-## Polices
-
-Krona One, Work Sans et Titillium Web sont chargées depuis Google Fonts
-(Theme Check le signale comme un simple avertissement). Pour tout servir depuis
-Shopify, déposer les fichiers `.woff2` dans `assets` et remplacer le `<link>`
-en tête de section par des règles `@font-face`.
-
-## Page « mot de passe »
-
-Si la boutique reste fermée par mot de passe, la section peut aussi remplacer
-le contenu de `layout/password.liquid` : y rendre la section avec
-`{% section 'fl390-boarding' %}` et retirer le formulaire de mot de passe du
-thème si l'on ne souhaite pas l'afficher.
+- **Date d'embarquement** (section Boarding soon) : `2026-10-07T00:00:00+02:00`
+  — indiquer le fuseau, `+02:00` en été et `+01:00` en hiver pour Paris — et
+  la date affichée en toutes lettres.
+- **Lignes du tableau** : un bloc « Vol » par ligne, la ligne FL 390 est dans
+  les réglages de la section.
+- **Emails** : le formulaire crée un client Shopify avec le tag `newsletter`
+  et l'accord marketing (Clients → filtrer par tag).
+- **Liens du pied de page** : blocs « Lien » (Instagram, contact…).
