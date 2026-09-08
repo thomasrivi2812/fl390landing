@@ -153,11 +153,11 @@
   }
 
   /* ---------- Liste d'embarquement ---------- */
-  #fl390-{{ sid }} .fl-news { padding: clamp(56px, 9vw, 120px) 22px; background: var(--fl-paper); color: var(--fl-ink); }
+  #fl390-{{ sid }} .fl-news { padding: clamp(48px, 7vw, 96px) 22px; background: var(--fl-paper); color: var(--fl-ink); }
   #fl390-{{ sid }} .fl-news__inner { display: flex; flex-direction: column; align-items: center; gap: 24px; max-width: 860px; margin: 0 auto; text-align: center; }
   #fl390-{{ sid }} .fl-news__eyebrow { color: var(--fl-burgundy); letter-spacing: 0.32em; }
-  #fl390-{{ sid }} .fl-news__title { font-family: var(--fl-display); font-weight: 400; font-size: clamp(1.6rem, 4vw, 3rem); line-height: 1.05; letter-spacing: -0.02em; }
-  #fl390-{{ sid }} .fl-news__text { max-width: 46ch; font-size: 15px; line-height: 1.75; color: rgba(0, 0, 0, 0.6); }
+  #fl390-{{ sid }} .fl-news__title { font-family: var(--fl-display); font-weight: 400; font-size: clamp(1.25rem, 2.6vw, 1.9rem); line-height: 1.1; letter-spacing: -0.02em; }
+  #fl390-{{ sid }} .fl-news__text { max-width: 46ch; font-size: 14px; line-height: 1.75; color: rgba(0, 0, 0, 0.6); }
   #fl390-{{ sid }} .fl-news__form { width: 100%; max-width: 460px; padding-top: 8px; }
   #fl390-{{ sid }} .fl-news__pill {
     display: flex; align-items: center; padding: 4px 6px 4px 20px;
@@ -386,6 +386,14 @@
     tick();
     tickClock();
     setInterval(function () { tick(); tickClock(); }, 1000);
+
+    /* Après l'envoi du formulaire, Shopify recharge la page en haut :
+       on ramène le visiteur sur le message de confirmation ou d'erreur. */
+    var status = root.querySelector('.fl-news__status[role]');
+    if (status && (window.location.search.indexOf('customer_posted=true') !== -1 || status.classList.contains('fl-news__status--error'))) {
+      var news = root.querySelector('.fl-news');
+      if (news) news.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' });
+    }
   })();
 </script>
 
